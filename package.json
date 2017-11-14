@@ -1,0 +1,18 @@
+{
+  "name": "blogposts-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "glob": "^7.1.2",
+    "mongoose": "^4.11.9"
+  }
+}
