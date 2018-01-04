@@ -12,8 +12,11 @@ let blogPostSchema = mongoose.Schema({
     photos: {
         type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Photo'}],
         required: true
+    },
+    tags: {
+        type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag'}],
+        required: false
     }
-
 });
 
 let BlogPost = module.exports = mongoose.model('BlogPost', blogPostSchema);
