@@ -3,6 +3,8 @@ const cors = require('cors')
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 
+const config = require('./services/configService').config;
+
 const postsController = require('./postsController');
 const photosController = require('./photosController');
 const syncController = require('./syncController');
@@ -10,15 +12,14 @@ const resetController = require('./resetController');
 const moveoutphotoController = require('./moveoutphotoController');
 const movephotoController = require('./movephotoController');
 
-
-let dbURL = 'mongodb://localhost/blog';
+let dbUri = config.mongodbUri;
 let dbAuth = {
     useMongoClient: true,
-    user: 'syke',
-    pass: 'mongoJELSZO123'
+    user: config.mongodbUser,
+    pass: config.mongodbPassword
 }
 
-mongoose.connect(dbURL, dbAuth);
+mongoose.connect(dbUri, dbAuth);
 
 let db = mongoose.connection;
 
@@ -34,10 +35,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
 
-
-
-
-// TODO: should be put
+// TODO: /syns/ should be put
 app.get('/sync/', syncController.get);
 app.get('/reset/', resetController.get);
 app.get('/photos', photosController.get);
@@ -47,7 +45,6 @@ app.get('/posts', postsController.get);
 app.put('/movephoto', movephotoController.put);
 app.put('/moveoutphoto', moveoutphotoController.put);
 
-
-app.listen(3001, function() {
-    console.log('App listening on 3001');
+app.listen(config.port, function() {
+    console.log('App listening on ' + config.port);
 });
