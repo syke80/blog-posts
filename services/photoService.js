@@ -2,8 +2,8 @@ const fs = require('fs');
 
 const configService = require('./configService');
 const postService = require('./postService');
-const Photo = require('../models/Photo');
-const BlogPost = require('../models/BlogPost');
+const Photo = require('../models/photo');
+const BlogPost = require('../models/blogPost');
 
 exports.removePhotoFromAllPosts = function(photoId) {
   return BlogPost.update({}, { $pull: {'photos': photoId } }, { multi: true }).exec();

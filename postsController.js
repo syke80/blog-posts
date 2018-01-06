@@ -1,5 +1,5 @@
-const BlogPost = require('./models/BlogPost');
-const PostService = require('./services/PostService');
+const BlogPost = require('./models/blogPost');
+const PostService = require('./services/postService');
 
 const DEFAULT_LIMIT = 10;
 const DEFAULT_PAGE = 1;

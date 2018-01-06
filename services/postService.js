@@ -1,4 +1,4 @@
-const BlogPost = require('../models/BlogPost');
+const BlogPost = require('../models/blogPost');
 
 exports.addNewPost = function(photo) {
   let newPost = new BlogPost({
