@@ -1,7 +1,7 @@
 const DEFAULT_LIMIT = 10;
 const DEFAULT_PAGE = 1;
 
-const Photo = require('./models/photo');
+const Photo = require('./../models/photo');
 
 exports.put = function(req, res) {
   let data = req.body;

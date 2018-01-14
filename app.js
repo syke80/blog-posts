@@ -5,12 +5,13 @@ const bodyParser = require('body-parser')
 
 const config = require('./services/configService').config;
 
-const postsController = require('./postsController');
-const photosController = require('./photosController');
-const syncController = require('./syncController');
-const resetController = require('./resetController');
-const moveoutphotoController = require('./moveoutphotoController');
-const movephotoController = require('./movephotoController');
+const postsController = require('./controller/postsController');
+const tagController = require('./controller/tagController');
+const photosController = require('./controller/photosController');
+const syncController = require('./controller/syncController');
+const resetController = require('./controller/resetController');
+const moveoutphotoController = require('./controller/moveoutphotoController');
+const movephotoController = require('./controller/movephotoController');
 
 let dbUri = config.mongodbUri;
 let dbAuth = {
@@ -42,6 +43,8 @@ app.get('/photos', photosController.get);
 app.put('/posts/:postId', postsController.put);
 app.put('/posts/:postId/tag', postsController.putTag);
 app.get('/posts', postsController.get);
+app.get('/tag', tagController.get);
+app.post('/tag', tagController.post);
 app.put('/movephoto', movephotoController.put);
 app.put('/moveoutphoto', moveoutphotoController.put);
 

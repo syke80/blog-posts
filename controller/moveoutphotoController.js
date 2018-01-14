@@ -1,6 +1,6 @@
-const postService = require('./services/postService');
-const photoService = require('./services/photoService');
-const Photo = require('./models/photo');
+const postService = require('./../services/postService');
+const photoService = require('./../services/photoService');
+const Photo = require('./../models/photo');
 
 exports.put = function(req, res) {
   let filename = req.body.photo,

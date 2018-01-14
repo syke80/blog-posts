@@ -14,7 +14,7 @@ let blogPostSchema = mongoose.Schema({
         required: true
     },
     tags: {
-        type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag'}],
+        type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag', unique: true }],
         required: false
     }
 });

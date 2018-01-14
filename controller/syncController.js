@@ -1,5 +1,5 @@
-const configService = require('./services/configService');
-const photoService = require('./services/photoService');
+const configService = require('./../services/configService');
+const photoService = require('./../services/photoService');
 const fs = require('fs');
 
 function synchronizeFiles() {

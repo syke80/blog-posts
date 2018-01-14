@@ -1,5 +1,5 @@
-const BlogPost = require('./models/blogPost');
-const PostService = require('./services/postService');
+const BlogPost = require('./../models/blogPost');
+const PostService = require('./../services/postService');
 
 const DEFAULT_LIMIT = 10;
 const DEFAULT_PAGE = 1;
@@ -13,7 +13,7 @@ exports.get = function(req, res) {
     .skip((page - 1) * limit)
     .limit(limit)
     .populate('photos')
-//    .populate('tags')
+    .populate('tags')
     .exec((error, blogPosts) => {
       let response = {
         items: blogPosts,
@@ -32,6 +32,11 @@ exports.put = function(req, res) {
   if (!id) {
     res.send('Id must be set', 400);
   }
+
+  if (req.body.tags) {
+    req.body.tags = JSON.parse(req.body.tags);
+  }
+  
 
   PostService.update(id, req.body)
     .then( () => {
