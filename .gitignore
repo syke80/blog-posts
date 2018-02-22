@@ -2,3 +2,5 @@
 .env
 node_modules
 temp
+nohup.out
+npm-debug.log

@@ -1,0 +1,1 @@
+PHOTOS_PATH=../storage/original/ MONGODB_URI=mongodb://localhost/blog MONGODB_USER= MONGODB_PASSWORD= PORT=3001 npm start
