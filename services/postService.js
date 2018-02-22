@@ -36,6 +36,28 @@ exports.deleteEmptyPosts = function() {
 }
 
 exports.addPhotoToPost = function(photoId, postId) {
+  return BlogPost.findByIdAndUpdate(postId, {
+    $push: { photos: photoId }
+  }).exec();
+}
+
+exports.removePhotoFromPost = function(photoId, postId) {
+  return BlogPost.findByIdAndUpdate(postId, {
+    $pull: { photos: photoId }
+  }).exec();
+}
+
+exports.removePhotoFromOtherPosts = function(photoId, postToSkipId) {
+  return BlogPost.updateMany(
+    {
+      _id: { $ne: postToSkipId }
+    }, {
+      $pull: { photos: photoId }
+    }
+  ).exec();
+}
+/*
+exports.addPhotoToPost = function(photoId, postId) {
   var promise = new Promise( (resolve, reject) => {
 
     BlogPost.findById(postId, function (err, post) {
@@ -60,3 +82,4 @@ exports.addPhotoToPost = function(photoId, postId) {
   return promise;
 }
 
+*/

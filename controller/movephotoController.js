@@ -13,12 +13,6 @@ exports.put = function(req, res) {
 
   }
 
-  // checkIfPostExist - ha invalid a post akkor bad request
-  // megkeresni a photo-t
-  // removeolni mindenhonnan
-  // torolni az ures postokat (removeolas utan lehet h ures lett)
-  // berakni a post-ba
-
   postService.checkIfPostExist(postId)
     let photoId;
 
@@ -26,10 +20,10 @@ exports.put = function(req, res) {
     .then( (photo) => {
       // TODO: null result should be handled
       photoId = photo._id;
-      return photoService.removePhotoFromAllPosts(photoId);
+      return postService.addPhotoToPost(photoId, postId);
     })
     .then( () => {
-      return postService.addPhotoToPost(photoId, postId);
+      return postService.removePhotoFromOtherPosts(photoId, postId);
     })
     .then( () => {
       return postService.deleteEmptyPosts();
@@ -37,7 +31,8 @@ exports.put = function(req, res) {
     .then( () => {
       res.send('');
     })
-    .catch( () => {
+    .catch( (err) => {
+      console.log(err);
       res.status(404).send('Something went wrong.');
     })
 };
